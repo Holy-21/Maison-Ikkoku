@@ -24,7 +24,7 @@ export default function App() {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden flex items-center justify-center">
-      <div className="relative flex flex-col items-center justify-center text-white text-center px-6 w-full"></div>
+      
 
       {/* Background */}
       <div className="absolute inset-0 bg-black"></div>
