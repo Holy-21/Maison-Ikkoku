@@ -4,8 +4,10 @@ export default function Letter() {
 
       {/* Blurred Background Effect */}
       <div
-  className="absolute inset-0 bg-cover bg-center  scale-100 animate-[zoom_15s_linear_infinite]"
-  style={{ backgroundImage: "url('/MI.avif')" }}
+  className="min-h-screen flex items-center justify-center 
+                bg-gradient-to-br from-[#f5e6d3] to-[#e8d5c0]
+                animate-fadeIn"
+  style={{ backgroundImage: `url('/MI.avif')` }}
 />
 
       {/* A4 Letter Card */}

@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function App() {
   const audioRef = useRef(null);
   const [started, setStarted] = useState(false);
 
   const [step, setStep] = useState(0);
+  const navigate = useNavigate();
 
   const handleStart = () => {
     audioRef.current.play();
@@ -22,7 +23,8 @@ export default function App() {
   }, [started]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full min-h-screen overflow-hidden flex items-center justify-center">
+      <div className="relative flex flex-col items-center justify-center text-white text-center px-6 w-full"></div>
 
       {/* Background */}
       <div className="absolute inset-0 bg-black"></div>
@@ -76,7 +78,7 @@ export default function App() {
                onClick={() => {
   setIsTransitioning(true);
   setTimeout(() => {
-    window.location.href = "/letter";
+    navigate("/letter");
   }, 1000);
 }}
                 className="mt-6 px-8 py-3 rounded-full 
