@@ -1,5 +1,5 @@
 {
   "routes": [
-    { "src": "/letter", "dest": "/" }
+    { "src": "(/.*)", "dest": "/" }
   ]
 }
