@@ -22,37 +22,34 @@ export default function App() {
     }
   }, [started]);
 
- return (
-  <div
-    className={`relative w-full h-screen overflow-hidden flex items-center justify-center ${
+return (
+    <div
+    className={`relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 ${
       isTransitioning ? "opacity-0 scale-110 blur-sm" : "opacity-100 scale-100"
     }`}
   >
-    {/* Background */}
-    <div className="absolute inset-0 bg-black -z-10"></div>
+      
 
-    <div
-      className="absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 -z-10"
-      style={{ backgroundImage: "url('/bg.jpg')" }}
-    />
+      {/* Background */}
+      <div className="absolute inset-0 bg-black">
 
-    {/* Overlay */}
-    <div className="absolute inset-0 bg-black/50 -z-10"></div>
+      <div
+  className="absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 animate-[zoom_15s_linear_infinite]"
+  style={{ backgroundImage: "url('/bg.jpg')" }}
+/>
 
-    {/* Content */}
-    <div className="relative z-20 flex items-center justify-center w-full px-4 text-white">
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[4px]" />
 
-      <div className="backdrop-blur-md bg-white/10 border border-white/20 
-                      rounded-2xl px-8 py-10 shadow-2xl space-y-4 
-                      max-w-lg w-full mx-auto 
-                      flex flex-col items-center text-center">
+      {/* Content */}
+      <div className="absolute inset-0 flex items-center justify-center text-white px-4">
+
+  <div className="backdrop-blur-md bg-white/10 border border-white/20 
+                  rounded-2xl px-8 py-10 shadow-2xl space-y-4 max-w-lg w-full mx-auto flex flex-col items-center text-center">
 
         {!started && (
           <button
-            onClick={() => {
-              console.log("CLICK WORKING"); // debug
-              handleStart();
-            }}
+            onClick={handleStart}
             className="px-10 py-4 bg-white text-black rounded-full text-lg 
                        hover:scale-110 transition duration-300"
           >
@@ -63,45 +60,59 @@ export default function App() {
         {started && (
           <>
             {step >= 1 && (
-              <p className="text-3xl md:text-4xl">
+              <p className="text-3xl md:text-4xl font-[Playfair_Display]">
                 I didn’t expect anything from you..
               </p>
             )}
 
             {step >= 2 && (
-              <p className="text-lg opacity-80">
+              <p className="text-lg opacity-80 font-[Poppins]">
                 but meeting you changed something in me.
               </p>
             )}
 
             {step >= 3 && (
-              <p className="text-md opacity-60">
+              <p className="text-md opacity-60 animate-fadeIn">
                 This is for you ❤️
               </p>
             )}
 
             {step >= 4 && (
               <button
-                onClick={() => {
-                  setIsTransitioning(true);
-                  setTimeout(() => navigate("/letter"), 1000);
-                }}
+               onClick={() => {
+  setIsTransitioning(true);
+  setTimeout(() => {
+    navigate("/letter");
+  }, 1000);
+}}
                 className="mt-6 px-8 py-3 rounded-full 
-                           bg-white text-black 
-                           hover:scale-110 transition duration-300"
+           bg-white/90 text-black font-medium tracking-wide
+           shadow-lg backdrop-blur-md
+           hover:scale-110 hover:bg-white transition duration-300 animate-slideUp animate-float"
               >
                 Your Puchki ∞
               </button>
             )}
           </>
         )}
-      </div>
-    </div>
 
-    {/* Grain (SAFE) */}
-    <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay">
-      <img src="/grain.png" className="w-full h-full object-cover" />
+          
+      </div>
+     
+
+      <audio ref={audioRef} src="/audio.mp3" />
     </div>
-  </div>
+    <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay">
+  <img
+    src="/grain.png"
+    alt="grain"
+    className="w-full h-full object-cover"
+  />
+</div>
+<div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay animate-grain">
+  <img src="/grain.png" className="w-full h-full object-cover" />
+</div>
+  </div>  
+</div>
 );
 }
