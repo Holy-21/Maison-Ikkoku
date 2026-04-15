@@ -32,7 +32,7 @@ export default function App() {
     <div className="absolute inset-0 bg-black"></div>
 
     <div
-      className="absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 animate-[zoom_15s_linear_infinite]"
+      className="pointer-events-none absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 animate-[zoom_15s_linear_infinite]"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     />
 
