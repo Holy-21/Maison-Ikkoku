@@ -38,10 +38,10 @@ export default function App() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[4px]" />
 
       {/* Content */}
-      <div className="relative flex  items-center justify-center w-full h-full px-6 text-white text-center">
+      <div className="relative flex  items-center justify-center w-full min-h-screen px-6 text-white text-center">
 
   <div className="backdrop-blur-md bg-white/10 border border-white/20 
-                  rounded-2xl px-8 py-10 shadow-2xl space-y-4 max-w-lg w-full">
+                  rounded-2xl px-8 py-10 shadow-2xl space-y-4 max-w-lg w-full mx-auto flex flex-col items-center">
 
         {!started && (
           <button
