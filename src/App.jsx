@@ -22,25 +22,25 @@ export default function App() {
     }
   }, [started]);
 
-  return (
+ return (
   <div
-    className={`relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 ${
+    className={`relative w-full h-screen overflow-hidden flex items-center justify-center ${
       isTransitioning ? "opacity-0 scale-110 blur-sm" : "opacity-100 scale-100"
     }`}
   >
     {/* Background */}
-    <div className="absolute inset-0 bg-black"></div>
+    <div className="absolute inset-0 bg-black -z-10"></div>
 
     <div
-      className="pointer-events-none absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 animate-[zoom_15s_linear_infinite]"
+      className="absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 -z-10"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     />
 
     {/* Overlay */}
-    <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[4px]"  />
+    <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
     {/* Content */}
-    <div className="relative z-10 flex items-center justify-center w-full px-4 text-white">
+    <div className="relative z-20 flex items-center justify-center w-full px-4 text-white">
 
       <div className="backdrop-blur-md bg-white/10 border border-white/20 
                       rounded-2xl px-8 py-10 shadow-2xl space-y-4 
@@ -49,7 +49,10 @@ export default function App() {
 
         {!started && (
           <button
-            onClick={handleStart}
+            onClick={() => {
+              console.log("CLICK WORKING"); // debug
+              handleStart();
+            }}
             className="px-10 py-4 bg-white text-black rounded-full text-lg 
                        hover:scale-110 transition duration-300"
           >
@@ -60,19 +63,19 @@ export default function App() {
         {started && (
           <>
             {step >= 1 && (
-              <p className="text-3xl md:text-4xl font-[Playfair_Display]">
+              <p className="text-3xl md:text-4xl">
                 I didn’t expect anything from you..
               </p>
             )}
 
             {step >= 2 && (
-              <p className="text-lg opacity-80 font-[Poppins]">
+              <p className="text-lg opacity-80">
                 but meeting you changed something in me.
               </p>
             )}
 
             {step >= 3 && (
-              <p className="text-md opacity-60 animate-fadeIn">
+              <p className="text-md opacity-60">
                 This is for you ❤️
               </p>
             )}
@@ -81,15 +84,11 @@ export default function App() {
               <button
                 onClick={() => {
                   setIsTransitioning(true);
-                  setTimeout(() => {
-                    navigate("/letter");
-                  }, 1000);
+                  setTimeout(() => navigate("/letter"), 1000);
                 }}
                 className="mt-6 px-8 py-3 rounded-full 
-                           bg-white/90 text-black font-medium tracking-wide
-                           shadow-lg backdrop-blur-md
-                           hover:scale-110 hover:bg-white transition duration-300 
-                           animate-slideUp animate-float"
+                           bg-white text-black 
+                           hover:scale-110 transition duration-300"
               >
                 Your Puchki ∞
               </button>
@@ -99,7 +98,7 @@ export default function App() {
       </div>
     </div>
 
-    {/* Grain Layer */}
+    {/* Grain (SAFE) */}
     <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay">
       <img src="/grain.png" className="w-full h-full object-cover" />
     </div>
