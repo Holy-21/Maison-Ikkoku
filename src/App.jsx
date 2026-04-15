@@ -23,25 +23,29 @@ export default function App() {
   }, [started]);
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-      
+  <div
+    className={`relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 ${
+      isTransitioning ? "opacity-0 scale-110 blur-sm" : "opacity-100 scale-100"
+    }`}
+  >
+    {/* Background */}
+    <div className="absolute inset-0 bg-black"></div>
 
-      {/* Background */}
-      <div className="absolute inset-0 bg-black"></div>
+    <div
+      className="absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 animate-[zoom_15s_linear_infinite]"
+      style={{ backgroundImage: "url('/bg.jpg')" }}
+    />
 
-      <div
-  className="absolute inset-0 bg-contain bg-center bg-no-repeat scale-95 animate-[zoom_15s_linear_infinite]"
-  style={{ backgroundImage: "url('/bg.jpg')" }}
-/>
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[4px]" />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[4px]" />
+    {/* Content */}
+    <div className="relative z-10 flex items-center justify-center w-full px-4 text-white">
 
-      {/* Content */}
-      <div className="absolute inset-0 flex items-center justify-center text-white px-4">
-
-  <div className="backdrop-blur-md bg-white/10 border border-white/20 
-                  rounded-2xl px-8 py-10 shadow-2xl space-y-4 max-w-lg w-full mx-auto flex flex-col items-center text-center">
+      <div className="backdrop-blur-md bg-white/10 border border-white/20 
+                      rounded-2xl px-8 py-10 shadow-2xl space-y-4 
+                      max-w-lg w-full mx-auto 
+                      flex flex-col items-center text-center">
 
         {!started && (
           <button
@@ -75,44 +79,30 @@ export default function App() {
 
             {step >= 4 && (
               <button
-               onClick={() => {
-  setIsTransitioning(true);
-  setTimeout(() => {
-    navigate("/letter");
-  }, 1000);
-}}
+                onClick={() => {
+                  setIsTransitioning(true);
+                  setTimeout(() => {
+                    navigate("/letter");
+                  }, 1000);
+                }}
                 className="mt-6 px-8 py-3 rounded-full 
-           bg-white/90 text-black font-medium tracking-wide
-           shadow-lg backdrop-blur-md
-           hover:scale-110 hover:bg-white transition duration-300 animate-slideUp animate-float"
+                           bg-white/90 text-black font-medium tracking-wide
+                           shadow-lg backdrop-blur-md
+                           hover:scale-110 hover:bg-white transition duration-300 
+                           animate-slideUp animate-float"
               >
                 Your Puchki ∞
               </button>
             )}
           </>
         )}
-
-          
       </div>
-      <div
-  className={`relative w-full h-screen overflow-hidden transition-all duration-1000 ${
-    isTransitioning ? "opacity-0 scale-110 blur-sm" : "opacity-100 scale-100"
-  }`}
-></div>
+    </div>
 
-      <audio ref={audioRef} src="/audio.mp3" />
-    </div>
+    {/* Grain Layer */}
     <div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay">
-  <img
-    src="/grain.png"
-    alt="grain"
-    className="w-full h-full object-cover"
-  />
-</div>
-<div className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay animate-grain">
-  <img src="/grain.png" className="w-full h-full object-cover" />
-</div>
+      <img src="/grain.png" className="w-full h-full object-cover" />
     </div>
-    
-  );
+  </div>
+);
 }
