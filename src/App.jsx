@@ -37,7 +37,7 @@ export default function App() {
     />
 
     {/* Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[4px]" />
+    <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[4px]"  />
 
     {/* Content */}
     <div className="relative z-10 flex items-center justify-center w-full px-4 text-white">
