@@ -23,7 +23,7 @@ export default function App() {
   }, [started]);
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
       
 
       {/* Background */}
